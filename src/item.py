@@ -1,9 +1,27 @@
+
+import csv
 class Item:
     """
     Класс для представления товара в магазине.
     """
     pay_rate = 1.0
     all = []
+
+    @staticmethod
+    def string_to_number(data: str) -> int:
+        return int(float(data))
+
+
+    @classmethod
+    def instantiate_from_csv(cls, path_file='../src/items.csv'):
+        with open(path_file, 'r', newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                row['price'] = Item.string_to_number(row['price'])
+                row['quantity'] = Item.string_to_number(row['quantity'])
+                name, price, quantity = row['name'], row['price'], row['quantity']
+                cls.all.append((name, price, quantity))
+        #return cls(reader)
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
@@ -15,7 +33,7 @@ class Item:
         """
         self.name = name
         self.price = price
-        self. quantity = quantity
+        self.quantity = quantity
 
         self.all.append(self)
 
