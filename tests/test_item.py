@@ -22,3 +22,7 @@ def test_string_to_number():
 #    Item.instantiate_from_csv('../src/items.csv')
 #    item1 = Item.all[0]
 #    assert item1.name == 'Смартфон'
+
+def test_dundr_methods(item1):
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+    assert str(item1) == 'Смартфон'
