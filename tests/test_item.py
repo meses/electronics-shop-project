@@ -2,6 +2,7 @@
 
 import pytest
 from src.item import Item
+from src.phone import Phone
 
 @pytest.fixture
 def item1():
@@ -26,3 +27,8 @@ def test_string_to_number():
 def test_dundr_methods(item1):
     assert repr(item1) == "Item('Смартфон', 10000, 20)"
     assert str(item1) == 'Смартфон'
+
+def test_add(item1):
+    phone1 = Phone("Смартфон", 10000, 10, 2)
+    assert item1 + phone1 == 30
+    assert phone1 + item1 == 30
