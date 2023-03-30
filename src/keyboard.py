@@ -22,6 +22,7 @@ class KeyBoard(Item, MixinLanguage):
     """Класс для товара Клавиатура"""
     def __init__(self, name: str, price: float, quantity: int):
         super().__init__(name, price, quantity)
+        MixinLanguage.__init__(self)
 
 
 
