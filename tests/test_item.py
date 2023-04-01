@@ -3,6 +3,7 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
+from exceptions.exceptions import InstantiateCSVError
 
 @pytest.fixture
 def item1():
@@ -32,3 +33,13 @@ def test_add(item1):
     phone1 = Phone("Смартфон", 10000, 10, 2)
     assert item1 + phone1 == 30
     assert phone1 + item1 == 30
+
+def test_file_not_found():
+    file = './src/itemsa.csv'
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv(file)
+
+def test_InstantiateCSVError_errors():
+    file = './src/itemss.csv'
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv(file)
